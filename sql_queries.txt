@@ -1,0 +1,96 @@
+CREATE TABLE employee (
+  emp_id INT NOT NULL AUTO_INCREMENT,
+  name VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL,
+  address VARCHAR(100) NOT NULL,
+  contact_no VARCHAR(20) NOT NULL,
+  pan VARCHAR(10) NOT NULL,
+  PRIMARY KEY (emp_id)
+);
+
+CREATE TABLE salary (
+  emp_id INT NOT NULL,
+  basic_salary DECIMAL(10,2) NOT NULL,
+  allowances DECIMAL(10,2) NOT NULL,
+  perquisites DECIMAL(10,2) NOT NULL,
+  profits DECIMAL(10,2) NOT NULL,
+  income_house_property DECIMAL(10,2),
+  income_capital_gains DECIMAL(10,2),
+  income_other_sources DECIMAL(10,2),
+  total_income DECIMAL(10,2),
+  PRIMARY KEY (emp_id),
+  FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+);
+
+CREATE TABLE deductions (
+  emp_id INT NOT NULL,
+  section VARCHAR(10) NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (emp_id, section),
+  FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+);
+
+CREATE TABLE exemptions (
+  emp_id INT NOT NULL,
+  type VARCHAR(10) NOT NULL,
+  amount DECIMAL(10,2) NOT NULL,
+  PRIMARY KEY (emp_id, type),
+  FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+);
+
+CREATE TABLE tax (
+  emp_id INT NOT NULL,
+  tds_salary DECIMAL(10,2) NOT NULL,
+  tds_other_income DECIMAL(10,2),
+  advance_tax DECIMAL(10,2),
+  self_assessment_tax DECIMAL(10,2),
+  PRIMARY KEY (emp_id),
+  FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+);
+
+CREATE TABLE verification (
+  emp_id INT NOT NULL,
+  declaration TEXT NOT NULL,
+  signature VARCHAR(100) NOT NULL,
+  date DATE NOT NULL,
+  PRIMARY KEY (emp_id),
+  FOREIGN KEY (emp_id) REFERENCES employee(emp_id)
+);
+
+
+-- employee table
+INSERT INTO employee (emp_id, name, password, address, contact_no, pan) VALUES
+(1,'John Smith', 'password1', '123 Main St, Anytown USA', '+91 9999999999', 'ABCD1234'),
+(2,'Jane Doe', 'password2', '456 Oak Ave, Somewhere Else', '+91 8888888888', 'EFGH5678'),
+(3,'Bob Johnson', 'password3', '789 Maple Rd, Nowhereville', '+91 7777777777', 'IJKL9012');
+
+-- salary table
+INSERT INTO salary (emp_id, basic_salary, allowances, perquisites, profits, income_house_property, income_capital_gains, income_other_sources, total_income) VALUES
+(1, 5000000.00, 1000000.00, 500000.00, 1000000.00, 0.00, 0.00, 0.00, 7500000.00),
+(2, 6000000.00, 1200000.00, 600000.00, 1200000.00, 0.00, 0.00, 0.00, 9000000.00),
+(3, 4000000.00, 800000.00, 400000.00, 800000.00, 0.00, 0.00, 0.00, 6000000.00);
+
+-- deductions table
+INSERT INTO deductions (emp_id, section, amount) VALUES
+(1, '80C', 500000.00),
+(1, '80D', 250000.00),
+(2, '80C', 600000.00),
+(3, '80D', 300000.00);
+
+-- exemptions table
+INSERT INTO exemptions (emp_id, type, amount) VALUES
+(1, 'HRA', 1000000.00),
+(2, 'LTA', 800000.00),
+(3, 'LTA', 600000.00);
+
+-- tax table
+INSERT INTO tax (emp_id, tds_salary, tds_other_income, advance_tax, self_assessment_tax) VALUES
+(1, 1000000.00, 0.00, 500000.00, 0.00),
+(2, 1200000.00, 0.00, 600000.00, 0.00),
+(3, 800000.00, 0.00, 400000.00, 0.00);
+
+-- verification table
+INSERT INTO verification (emp_id, declaration, signature, date) VALUES
+(1, 'I declare that the information provided is accurate to the best of my knowledge.', 'John Smith', '2022-03-10'),
+(2, 'I declare that the information provided is accurate to the best of my knowledge.', 'Jane Doe', '2022-03-11'),
+(3, 'I declare that the information provided is accurate to the best of my knowledge.', 'Bob Johnson', '2022-03-12');
