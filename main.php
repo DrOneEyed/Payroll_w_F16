@@ -37,6 +37,21 @@
 				height: auto;
 			}
 		</style>
+		<script type="text/javascript">
+			function checkLogin() {
+				var loginId = document.getElementById("emp_id").value;
+				var password = document.getElementById("emp_pass").value;
+				if (loginId === "admin") {
+					if (password === "admin") {
+						window.location.href = "#dash";
+					} else {
+						alert("Invalid password for admin user.");
+					}
+				} else {
+					window.location.href = "#det";
+				}
+			}
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -56,9 +71,8 @@
 						</div>
 						<nav>
 							<ul>
-								<li><a href="#emp">Employee</a></li>
-								<li><a href="#admin">Admin</a></li>
 								<li><a href="#about">About Us</a></li>
+								<li><a href="#emp">Log In</a></li>
 								<li><a href="#contact">Feedback</a></li>
 								<!--<li><a href="#elements">Elements</a></li>-->
 							</ul>
@@ -72,9 +86,10 @@
 							<article id="emp">
 								<h2 class="major">Login</h2>
 								<label>Enter Employee ID:</label>
-								<form name="form" action="#det" method="post">
+								<form name="form" onSubmit="JavaScript:checkLogin()" method="post">
 									<input type="text" id="emp_id" name="emp_id" required>
 									<br>
+									<label>Enter Password:</label>
 									<input type="password" id="emp_pass" name="emp_pass" required>
 									<br>
 									<button>Login</button>
@@ -94,7 +109,7 @@
 									<br>
 									<input type="password" id="admin_pass" name="admin_pass" required>
 									<br>
-									<button>Login</button>
+									<button onclick="checkLogin()">Login</button>
 								</form>
 							</article>
 							
@@ -106,7 +121,7 @@
 
 							<article id="ins">
 								<h1>Employee Information Form</h1>
-								<form action="insert_data.php" method="post">
+								<form id='insert' action="insert_data.php" method="post" onsubmit='submitForm(event)'>
 									<h2>Personal Information</h2>
 									<label>Name:</label>
 									<input type="text" name="name" required><br><br>
@@ -165,8 +180,84 @@
 									<label>Date:</label>
 									<input type="date" name="date" required><br><br>
 
-									<input type="submit" value="Submit">
+									<h2>Form-16</h2>
+									<label for="assessment_year">Assessment Year:</label>
+									<input type="text" name="assessment_year" id="assessment_year" required><br>
+									
+									<label for="basic_salary">Basic Salary:</label>
+									<input type="text" name="basic_salary" id="basic_salary" required><br>
+									
+									<label for="dearness_allowance">Dearness Allowance:</label>
+									<input type="text" name="dearness_allowance" id="dearness_allowance" required><br>
+									
+									<label for="house_rent_allowance">House Rent Allowance:</label>
+									<input type="text" name="house_rent_allowance" id="house_rent_allowance" required><br>
+									
+									<label for="other_allowances">Other Allowances:</label>
+									<input type="text" name="other_allowances" id="other_allowances" required><br>
+									
+									<label for="exempted_allowances">Exempted Allowances:</label>
+									<input type="text" name="exempted_allowances" id="exempted_allowances" required><br>
+									
+									<label for="perquisites">Perquisites:</label>
+									<input type="text" name="perquisites" id="perquisites" required><br>
+									
+									<label for="profits_in_lieu_of_salary">Profits in Lieu of Salary:</label>
+									<input type="text" name="profits_in_lieu_of_salary" id="profits_in_lieu_of_salary" required><br>
+									
+									<label for="deductions_upto_16">Deductions Upto 16:</label>
+									<input type="text" name="deductions_upto_16" id="deductions_upto_16" required><br>
+									
+									<label for="deductions_upto_80c">Deductions Upto 80C:</label>
+									<input type="text" name="deductions_upto_80c" id="deductions_upto_80c" required><br>
+									
+									<label for="deductions_upto_80d">Deductions Upto 80D:</label>
+									<input type="text" name="deductions_upto_80d" id="deductions_upto_80d" required><br>
+									
+									<label for="deductions_upto_other">Deductions Upto Other:</label>
+									<input type="text" name="deductions_upto_other" id="deductions_upto_other" required><br>
+									
+									<label for="other_income">Other Income:</label>
+									<input type="text" name="other_income" id="other_income" required><br>
+									
+									<label for="tds_deducted">TDS Deducted:</label>
+									<input type="text" name="tds_deducted" id="tds_deducted" required><br>
+									
+									<label for="investment_proof_upto_80c">Investment Proof Upto 80C:</label>
+									<input type="text" name="investment_proof_upto_80c" id="investment_proof_upto_80c" required><br>
+									
+									<label for="investment_proof_upto_80d">Investment Proof Upto 80D:</label>
+									<input type="text" name="investment_proof_upto_80d" id="investment_proof_upto_80d" required><br>
+									
+									<label for="investment_proof_others">Investment Proof Others:</label>
+									<input type="text" name="investment_proof_others" id="investment_proof_others" required><br>
+
+									<button>Submit</button>
 								</form>
+								<script>
+									function submitForm(event) {
+										event.preventDefault(); // prevent the default form submission
+									
+										// get form data
+										var form = document.getElementById('insert');
+										var formData = new FormData(form);
+									
+										// send form data using AJAX
+										var xhr = new XMLHttpRequest();
+										xhr.open('POST', form.action, true);
+										xhr.onload = function () {
+											if (xhr.status === 200) {
+												// handle success response
+												console.log(xhr.responseText);
+											} else {
+												// handle error response
+												console.log('Error: ' + xhr.statusText);
+											}
+										};
+										xhr.send(formData);
+										alert('Inserted!');
+									}
+								</script>
 							</article>
 
 							<article id="del">
@@ -181,7 +272,7 @@
 						<!-- About -->
 							<article id="about">
 								<h2 class="major">About Us</h2>
-								<p>We are a team which is passionate about resolving social issues through our programming endeavours. Our newest project takes in account for monitoring all the fradulent NGOs used for money laundering, utilising funds donated for a social cause. Our project, NGOGuard utilises various data points to rate various NGOs for legitimacy.</p>
+								<p>We are a team which is passionate about resolving social issues through our programming endeavours.</p>
 							</article>
 
 						<!-- Contact -->
