@@ -136,41 +136,41 @@
 
 									<h2>Salary Information</h2>
 									<label>Basic Salary:</label>
-									<input type="number" name="basic_salary" required><br><br>
+									<input type="text" name="basic_salary" required><br><br>
 									<label>Allowances:</label>
-									<input type="number" name="allowances" required><br><br>
+									<input type="text" name="allowances" required><br><br>
 									<label>Perquisites:</label>
-									<input type="number" name="perquisites" required><br><br>
+									<input type="text" name="perquisites" required><br><br>
 									<label>Profits:</label>
-									<input type="number" name="profits" required><br><br>
+									<input type="text" name="profits" required><br><br>
 									<label>Income from House Property:</label>
-									<input type="number" name="income_house_property"><br><br>
+									<input type="text" name="income_house_property"><br><br>
 									<label>Income from Capital Gains:</label>
-									<input type="number" name="income_capital_gains"><br><br>
+									<input type="text" name="income_capital_gains"><br><br>
 									<label>Income from Other Sources:</label>
-									<input type="number" name="income_other_sources"><br><br>
+									<input type="text" name="income_other_sources"><br><br>
 
 									<h2>Deductions Information</h2>
 									<label>Section:</label>
 									<input type="text" name="section" required><br><br>
 									<label>Amount:</label>
-									<input type="number" name="amount" required><br><br>
+									<input type="text" name="amount" required><br><br>
 
 									<h2>Exemptions Information</h2>
 									<label>Type:</label>
 									<input type="text" name="type" required><br><br>
 									<label>Amount:</label>
-									<input type="number" name="exemptions_amount" required><br><br>
+									<input type="text" name="exemptions_amount" required><br><br>
 
 									<h2>Tax Information</h2>
 									<label>TDS on Salary:</label>
-									<input type="number" name="tds_salary" required><br><br>
+									<input type="text" name="tds_salary" required><br><br>
 									<label>TDS on Other Income:</label>
-									<input type="number" name="tds_other_income"><br><br>
+									<input type="text" name="tds_other_income"><br><br>
 									<label>Advance Tax:</label>
-									<input type="number" name="advance_tax"><br><br>
+									<input type="text" name="advance_tax"><br><br>
 									<label>Self Assessment Tax:</label>
-									<input type="number" name="self_assessment_tax"><br><br>
+									<input type="text" name="self_assessment_tax"><br><br>
 
 									<h2>Verification Information</h2>
 									<label>Declaration:</label>
